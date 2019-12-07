@@ -1,6 +1,6 @@
                                                                                                                                                                        Sida 1
                                                                                              Faktura Fjärrvärme
-                                                                                                           Fakturanummer                 10003534
+                                                                                                           Fakturanummer                 20003534
                                                                                                            Fakturadatum                  2018 12 06
                                                                                                            Kundnummer                    5239582
                                                                                                            Avtalskonto                   82935235
@@ -43,7 +43,7 @@
 
 
                                                                                                             Oss tillhanda                                           2019 01 06
-
+Fakturaperiod
                                                                                                             Belopp att betala                                      20 979,77 kr
 BG 130 OCR spec 29204 aug 07
 

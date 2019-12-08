@@ -44,7 +44,7 @@ def parse_invoice(invoice):
     """
     Iterate through MAP keys and build up a dictionary containing key:match
     pairs
-    :param invoice:
+    :param invoice: str
     :return: dictionary of key:match pairs
     :rtype: dict
     """
@@ -52,7 +52,7 @@ def parse_invoice(invoice):
     for key in invoice_mole.config.MAP:
         match = find_key(key, invoice)
         # If there was a match, extract it, otherwise return empty list
-        match = match[0] if match else []
+        match = match[0] if match else ''
         d[key] = match
     return d
 
@@ -61,7 +61,7 @@ def txt_to_str(_path):
     """
     Helper function to open a .txt file and return it in one string. Script
     will exit if text file was not found
-    :param _path: Path to a text file
+    :param _path: str, Path to a text file
     :return: Entire document in one string
     :rtype: str
     """

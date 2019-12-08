@@ -16,7 +16,7 @@ New pattens and mappings can be added here
 #     234  456,35 kr will be matched as 456,35 kr
 _PRICE = '((?:\d+\s)*\d+[,]\d+)\s?kr'
 # match date with separators " /-:"
-_DATE = '\d{2,4}[\s|:|-|\/]\d{1,2}[\s|:|-|\/]\d{1,2}'
+_DATE = '\d{2,4}[\s|:|-|/]\d{1,2}[\s|:|-|/]\d{1,2}'
 # match two _DATE patterns separated by '-' and optional single whitespaces on
 # the both sides
 _PERIOD = f'({_DATE}\s{{0,1}}-\s{{0,1}}{_DATE})'

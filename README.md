@@ -15,5 +15,10 @@ Mapping extended and adjusted accordingly, for example, if you want to find
 OCR numbers in the document, you can add mapping `'OCR': <pattern>'` to the
 `config.MAP` dictionary
 
+Run the script with
+`python3 invoice_parser.py [--string | --txt]`
+or \
+`python3 invoice_parser.py -h` for help.
+
 ##WHY?
 Automation==Profit

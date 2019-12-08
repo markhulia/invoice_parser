@@ -1,11 +1,11 @@
 """
-This module accepts an invoice in the form of a text file or a string, parses
+This module accepts an invoice_mole in the form of a text file or a string, parses
 it base on the mapping defined in config.py file, and returns parsed data.
 Output data is returned in a text file
 """
 import re
 import argparse
-import config
+import invoice_mole.config
 
 
 def arguments():
@@ -18,9 +18,9 @@ def arguments():
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-s', '--string',
-                       help="Pass invoice as a string, if you REALLY need it")
+                       help="Pass invoice_mole as a string, if you REALLY need it")
     group.add_argument('-t', '--txt',
-                       help="Pass invoice in a text file. My favorite choice!")
+                       help="Pass invoice_mole in a text file. My favorite choice!")
 
     return parser.parse_args()
 
@@ -30,27 +30,27 @@ def find_key(key, text) -> list:
     Iterate through the string find substrings as defined in regex patterns
     in config.MAP
     :param key: str, dictionary key
-    :param text: str, invoice
+    :param text: str, invoice_mole
     :return: If re.findall(), return a list of matches
     :rtype: list
     """
     if key in text:
-        hit = re.findall(config.MAP[key], text)
+        hit = re.findall(invoice_mole.config.MAP[key], text)
         if hit:
             return hit
 
 
-def parse_invoice(invoice):
+def parse_invoice(_invoice):
     """
     Iterate through MAP keys and build up a dictionary containing key:match
     pairs
-    :param invoice:
+    :param _invoice:
     :return: dictionary of key:match pairs
     :rtype: dict
     """
     d = {}
-    for key in config.MAP:
-        match = find_key(key, invoice)
+    for key in invoice_mole.config.MAP:
+        match = find_key(key, _invoice)
         # If there was a match, extract it, otherwise return empty list
         match = match[0] if match else []
         d[key] = match
@@ -87,7 +87,7 @@ def pretty_print(d):
         # We'll add 'len_diff' empty spaces to the strings
         len_diff = longest_key - len(key)
         print(f'{key}', end='')
-        print(f"{' '*len_diff}:", end=' ')  # add missing spaces
+        print(f"{' ' * len_diff}:", end=' ')  # add missing spaces
         print(f'{value}')
 
 
@@ -97,10 +97,10 @@ def main():
     :return: void
     """
     args = arguments()
-    # depending on which arguments was provided invoice can be
+    # depending on which arguments was provided invoice_mole can be
     # arts.string or args.txt
-    invoice = args.string if args.string else txt_to_str(args.txt)
-    clean_data = parse_invoice(invoice)
+    _invoice = args.string if args.string else txt_to_str(args.txt)
+    clean_data = parse_invoice(_invoice)
     pretty_print(clean_data)
 
 

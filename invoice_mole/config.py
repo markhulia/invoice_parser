@@ -1,5 +1,5 @@
 """
-Configuration file for invoice_parser.py
+Configuration file for invoice_mole.py
 Contains regex patterns and mapping between <keyword>:<regex pattern>
 New pattens and mappings can be added here
 """

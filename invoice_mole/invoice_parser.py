@@ -1,5 +1,5 @@
 """
-This module accepts an invoice_mole in the form of a text file or a string, parses
+This module accepts an invoice in the form of a text file or a string, parses
 it base on the mapping defined in config.py file, and returns parsed data.
 Output data is returned in a text file
 """
@@ -18,9 +18,9 @@ def arguments():
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-s', '--string',
-                       help="Pass invoice_mole as a string, if you REALLY need it")
+                       help="Pass invoice as a string, if you REALLY need it")
     group.add_argument('-t', '--txt',
-                       help="Pass invoice_mole in a text file. My favorite choice!")
+                       help="Pass invoice in a text file. My favorite choice!")
 
     return parser.parse_args()
 
@@ -30,7 +30,7 @@ def find_key(key, text) -> list:
     Iterate through the string find substrings as defined in regex patterns
     in config.MAP
     :param key: str, dictionary key
-    :param text: str, invoice_mole
+    :param text: str, invoice
     :return: If re.findall(), return a list of matches
     :rtype: list
     """
@@ -40,17 +40,17 @@ def find_key(key, text) -> list:
             return hit
 
 
-def parse_invoice(_invoice):
+def parse_invoice(invoice):
     """
     Iterate through MAP keys and build up a dictionary containing key:match
     pairs
-    :param _invoice:
+    :param invoice:
     :return: dictionary of key:match pairs
     :rtype: dict
     """
     d = {}
     for key in invoice_mole.config.MAP:
-        match = find_key(key, _invoice)
+        match = find_key(key, invoice)
         # If there was a match, extract it, otherwise return empty list
         match = match[0] if match else []
         d[key] = match
@@ -97,10 +97,10 @@ def main():
     :return: void
     """
     args = arguments()
-    # depending on which arguments was provided invoice_mole can be
+    # depending on which arguments was provided _invoice can be
     # arts.string or args.txt
-    _invoice = args.string if args.string else txt_to_str(args.txt)
-    clean_data = parse_invoice(_invoice)
+    invoice = args.string if args.string else txt_to_str(args.txt)
+    clean_data = parse_invoice(invoice)
     pretty_print(clean_data)
 
 

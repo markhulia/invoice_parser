@@ -6,15 +6,15 @@ New pattens and mappings can be added here
 
 # If a sequence of numbers ends with 'kr' we assume it's a price.
 # The price can have
-# > single comma/dot to separate decimals, e.g:
+# > single comma to separate decimals, e.g:
 #     123,00 kr
 # > space in between the digits, to indicate hundreds, thousands, millions
-#     1 234 456.35 kr
+#     1 234 456,35 kr
 # The regex works with the assumption that a valid price can only have ONE
 # space separating the digits. Left part of the potential price is ignored if
 # it's separated by two spaces or more. E.g.:
-#     234  456.35 kr will be matched as 456.35 kr
-_PRICE = '((?:\d+\s)+\d+[,.]\d+)\s?kr'
+#     234  456,35 kr will be matched as 456,35 kr
+_PRICE = '((?:\d+\s)*\d+[,]\d+)\s?kr'
 # match date with separators " /-:"
 _DATE = '\d{2,4}[\s|:|-|\/]\d{1,2}[\s|:|-|\/]\d{1,2}'
 # match two _DATE patterns separated by '-' and optional single whitespaces on

@@ -86,9 +86,9 @@ def pretty_print(d):
     for key, value in d.items():
         # We'll add 'len_diff' empty spaces to the strings
         len_diff = longest_key - len(key)
-        print(f'{key}', end='')
-        print(f"{' ' * len_diff}:", end=' ')  # add missing spaces
-        print(f'{value}')
+        print('{}'.format(key), end='')
+        print("{}:".format(' ' * len_diff), end=' ')  # add missing spaces
+        print('{}'.format(value))
 
 
 def main():

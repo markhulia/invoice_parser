@@ -1,6 +1,5 @@
 import unittest
 import invoice_mole.invoice_parser as invoice_parser
-import invoice_mole.config as config
 
 
 class ParseInvoice(unittest.TestCase):

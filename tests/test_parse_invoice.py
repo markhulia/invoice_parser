@@ -105,6 +105,12 @@ class ParseInvoice(unittest.TestCase):
         expected_result = ['2018/11/01 - 2018/12/01']
         self.assertEqual(invoice_parser.find_key(key, text), expected_result)
 
+    def test_validate_start(self):
+        prices = ['0,123', '01,12', '0,31']
+        expected_output = ['0,31']
+        result = invoice_parser.validate_price(prices)
+        self.assertEquals(result, expected_output)
+
 
 if __name__ == '__main__':
     unittest.main()

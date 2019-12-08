@@ -25,6 +25,31 @@ def arguments():
     return parser.parse_args()
 
 
+def validate_price(hits):
+    """
+    This function validates that the sequence of numbers is a proper format
+    to be considered a 'price'. Rules for proper price:
+    - price can have only one digit before the decimal separator if it starts
+      with 0
+    - price can have only two digits after decimal separator
+    :param: hit, list of potential prices
+    :return:
+    """
+    hit = []
+    for price in hits:
+        if price[0] == '0':
+            try:
+                assert price[1] == ','
+            except AssertionError:
+                continue
+        try:
+            assert len(price.split(',')[-1]) == 2
+            hit.append(price)
+        except AssertionError:
+            continue
+    return hit
+
+
 def find_key(key, text) -> list:
     """
     Iterate through the string find substrings as defined in regex patterns
@@ -35,8 +60,11 @@ def find_key(key, text) -> list:
     :rtype: list
     """
     if key in text:
-        hit = re.findall(invoice_mole.config.MAP[key], text)
+        pattern = invoice_mole.config.MAP[key]
+        hit = re.findall(pattern, text)
         if hit:
+            if pattern.endswith('kr'):
+                hit = validate_price(hit)
             return hit
 
 

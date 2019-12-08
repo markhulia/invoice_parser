@@ -2,11 +2,11 @@
 A script which parses text file and outputs key:value data as defined in
 invoice_mode/config.py file
 
-##WHAT?
+## WHAT?
 A python3 script that helps you find a relevant payment information in your
 text. It allows automation in bulk parsing
 
-##HOW?
+## HOW?
 Script parses text file and retrieves information according to the rules which
 are defined in config.py file.
 config.MAP contains a mapping between keywords of interest, e.g.
@@ -20,5 +20,5 @@ Run the script with
 or \
 `python3 invoice_parser.py -h` for help.
 
-##WHY?
+## WHY?
 Automation==Profit
